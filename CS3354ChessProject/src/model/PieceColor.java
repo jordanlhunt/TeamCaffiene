@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Represents the color a chess piece
+ */
 public enum PieceColor {
     WHITE,
     BLACK;
