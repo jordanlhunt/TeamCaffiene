@@ -4,20 +4,28 @@ import java.util.Objects;
 
 /**
  * Represents a board coordinate. Row 0 is rank 8, column 0 is file A. Position
- * is 'final' to prevent extension
+ * is 'final' to be read-only
  */
-
 public final class Position {
+    // -------------
+    // | Constants |
+    // -------------
     public static final int MAX_ROWS = 8;
     public static final int MAX_COLUMNS = 8;
+    public static final char FILE_START = 'A';
+    public static final char FILE_END = 'H';
+    public static final char RANK_START = '1';
+    public static final char RANK_END = '8';
 
-    // Instance Variables
+    // ----------------------
+    // | Instance Variables |
+    // ----------------------
     private final int row;
     private final int column;
 
     // ---------------
     // | Constructor |
-    // --------------
+    // ---------------
 
     /**
      * Create a position
@@ -35,6 +43,7 @@ public final class Position {
             this.column = column;
         }
     }
+
     // ------------------
     // | Public Methods |
     // ------------------
@@ -49,6 +58,42 @@ public final class Position {
     public static boolean isOnBoard(int row, int column) {
         return (row >= 0 && row < MAX_ROWS && column >= 0 && column < MAX_COLUMNS);
     }
-    // endregion
 
+    // ---------------------
+    // | Getters & Setters |
+    // ---------------------
+
+    public int getRow() {
+        return this.row;
+    }
+
+    public int getColumn() {
+        return this.column;
+    }
+
+    // -------------
+    // | Overrides |
+    // -------------
+
+    @Override
+    public boolean equals(Object otherObject) {
+        if (this == otherObject) {
+            return true;
+        }
+        if (!(object instanceof Position)) {
+            return false;
+        }
+        Position otherPosition = (Position) otherObject;
+        return (row == otherPosition.row && column == otherPosition.column);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(row, column);
+    }
+
+    @Override
+    public String toString() {
+        return conventToAlgebraic();
+    }
 }
