@@ -59,9 +59,15 @@ public final class Position {
         return (row >= 0 && row < MAX_ROWS && column >= 0 && column < MAX_COLUMNS);
     }
 
-    // ---------------------
-    // | Getters & Setters |
-    // ---------------------
+    /**
+     * Converts
+     * 
+     * @return
+     */
+
+    // -----------
+    // | Getters |
+    // -----------
 
     public int getRow() {
         return this.row;
@@ -80,7 +86,7 @@ public final class Position {
         if (this == otherObject) {
             return true;
         }
-        if (!(object instanceof Position)) {
+        if (!(otherObject instanceof Position)) {
             return false;
         }
         Position otherPosition = (Position) otherObject;
