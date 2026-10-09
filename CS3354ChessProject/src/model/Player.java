@@ -15,7 +15,7 @@ public class Player {
     /**
      * Represents a chess Player
      */
-    public Player(string playerName, PieceColor pieceColor) {
+    public Player(String playerName, PieceColor pieceColor) {
         this.playerName = playerName;
         this.pieceColor = pieceColor;
     }
@@ -24,12 +24,29 @@ public class Player {
     // | Getters |
     // -----------
 
+    /**
+     * Returns the player Name
+     * 
+     * @return the player name
+     */
     public String getPlayerName() {
         return this.playerName;
     }
 
-    public String getPieceColor() {
+    /**
+     * Returns the piece color
+     * 
+     * @return the piece color
+     */
+    public PieceColor getPieceColor() {
         return this.pieceColor;
     }
 
+    // -------------
+    // | Overrides |
+    // -------------
+    @Override
+    public String toString() {
+        return (this.playerName + " | " + this.pieceColor);
+    }
 }
