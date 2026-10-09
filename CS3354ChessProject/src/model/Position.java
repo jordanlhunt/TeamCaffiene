@@ -15,6 +15,10 @@ public final class Position {
     private final int row;
     private final int column;
 
+    // ---------------
+    // | Constructor |
+    // --------------
+
     /**
      * Create a position
      * 
@@ -31,7 +35,9 @@ public final class Position {
             this.column = column;
         }
     }
-    // Public Methods
+    // ------------------
+    // | Public Methods |
+    // ------------------
 
     /**
      * Returns whether the row and column are on the board
@@ -43,4 +49,6 @@ public final class Position {
     public static boolean isOnBoard(int row, int column) {
         return (row >= 0 && row < MAX_ROWS && column >= 0 && column < MAX_COLUMNS);
     }
+    // endregion
+
 }
