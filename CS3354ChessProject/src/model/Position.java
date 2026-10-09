@@ -1,4 +1,4 @@
-package chess.model;
+package model;
 
 import java.util.Objects;
 
@@ -36,7 +36,7 @@ public final class Position {
      *                                  board
      */
     public Position(int row, int column) {
-        if (!isOnBoard(row, column)) {
+        if (!isInBoardBounds(row, column)) {
             throw new IllegalArgumentException("[ERROR] - Position is outside the board");
         } else {
             this.row = row;
@@ -49,13 +49,13 @@ public final class Position {
     // ------------------
 
     /**
-     * Returns whether the row and column are on the board
+     * Returns whether the row and column in the bounds of the board
      * 
      * @param row    the row value
      * @param column the column value
      * @return true if the row and column coordinate is valid
      */
-    public static boolean isOnBoard(int row, int column) {
+    public static boolean isInBoardBounds(int row, int column) {
         return (row >= 0 && row < MAX_ROWS && column >= 0 && column < MAX_COLUMNS);
     }
 
