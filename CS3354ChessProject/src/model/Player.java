@@ -1,5 +1,7 @@
 package model;
 
+import pieces.PieceColor;
+
 public class Player {
 
     // ----------------------
@@ -26,7 +28,7 @@ public class Player {
 
     /**
      * Returns the player Name
-     * 
+     *
      * @return the player name
      */
     public String getPlayerName() {
@@ -35,7 +37,7 @@ public class Player {
 
     /**
      * Returns the piece color
-     * 
+     *
      * @return the piece color
      */
     public PieceColor getPieceColor() {
