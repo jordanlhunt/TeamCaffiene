@@ -1,4 +1,4 @@
-package model;
+package pieces;
 
 /**
  * Represents the color a chess piece
