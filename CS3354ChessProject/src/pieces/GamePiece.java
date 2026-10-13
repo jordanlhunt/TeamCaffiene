@@ -11,7 +11,7 @@ import java.util.List;
  */
 public abstract class GamePiece {
     private final PieceColor pieceColor;
-    private final Position position;
+    private Position position;
 
     // ---------------
     // | Constructor |
@@ -27,9 +27,9 @@ public abstract class GamePiece {
         this.position = startPosition;
     }
 
-    // -----------
-    // | Getters |
-    // -----------
+    // ---------------------
+    // | Getters & Setters |
+    // --------------------
     /**
      * Returns the piece color
      *
@@ -46,6 +46,13 @@ public abstract class GamePiece {
      */
     public Position getPosition() {
         return this.position;
+    }
+
+    /**
+     * Sets the current position
+     */
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
     /**
