@@ -1,5 +1,6 @@
 package pieces;
 
+import model.Board;
 import model.Position;
 import java.util.List;
 
@@ -78,17 +79,16 @@ public abstract class GamePiece {
     }
 
     /**
-     * Add sliding moves in one direction. Knights will have their own movement
-     * mechanic
+     * Add sliding moves in one direction. Queens, Bishops, and Rooks
      * 
      * @param board         the current board
      * @param possibleMoves the list of possibleMove
-     * @param rowStep       the row step
-     * @param columnStep    the column
+     * @param rowOffset     the row offset
+     * @param columnOffset  the column offset
      */
-    protected void addSlidingMoves(Board board, List<Position> possibleMoves, int rowStep, int columnStep) {
-        int row = this.position.getRow() + rowStep;
-        int column = this.position.getColumn() + columnStep;
+    protected void addSlidingMoves(Board board, List<Position> possibleMoves, int rowOffset, int columnOffset) {
+        int row = this.position.getRow() + rowOffset;
+        int column = this.position.getColumn() + columnOffset;
         while (row >= 0 && row < Position.MAX_ROWS && column >= 0 && column < Position.MAX_COLUMNS) {
             Position possibleMove = new Position(row, column);
             GamePiece target = board.getPiece(possibleMove);
@@ -100,8 +100,8 @@ public abstract class GamePiece {
                 }
                 break;
             }
-            row += rowStep;
-            column += columnStep;
+            row += rowOffset;
+            column += columnOffset;
         }
     }
 }
