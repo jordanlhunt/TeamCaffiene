@@ -52,11 +52,9 @@ public final class Position {
     /**
      * Returns whether the row and column in the bounds of the board
      *
-     * @param row    the row value
-     * @param column the column value
      * @return true if the row and column coordinate is valid
      */
-    public static boolean isInBoardBounds(int row, int column) {
+    public boolean isInBoardBounds() {
         return (row >= 0 && row < MAX_ROWS && column >= 0 && column < MAX_COLUMNS);
     }
 

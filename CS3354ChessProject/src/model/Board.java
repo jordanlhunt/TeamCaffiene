@@ -37,24 +37,78 @@ public class Board {
         placeGamePieces(PieceColor.BLACK);
         placeGamePieces(PieceColor.WHITE);
     }
-    /** Checks whether a position is inside the gameboard.
+
+    /**
+     * Checks whether a position is inside the gameboard.
+     * 
      * @param position on the gameboard (row,column)
      * @return true when the position is inside the bounds of the gameboard
      */
-    public boolean isInBoardBounds(Position position){
+    public boolean isInBoardBounds(Position position) {
         return position.isInBoardBounds();
     }
 
-    public boolean isPathViable(Position source, Position target){
-        if(source.equals(target)){
+    /**
+     * Checks whether the path between two positions is clear
+     * 
+     * @param source the source position
+     * @param target the target position
+     * @return true if the path is clear
+     */
+    public boolean isPathClear(Position source, Position target) {
+        if (source.equals(target)) {
             return true;
         }
+        int rowDifference = target.getRow() - source.getColumn();
+        int columnDifference = target.getColumn() - source.getColumn();
+        int rowOffset = 0;
+        int columnOffset = 0;
+
+        if (rowDifference == 0) {
+            if (columnDifference > 0) {
+                columnOffset = 1;
+            } else if (columnDifference < 0) {
+                columnOffset = -1;
+            } else {
+                return false;
+            }
+        } else if (columnDifference == 0) {
+            if (rowDifference > 0) {
+                rowOffset = 1;
+            } else {
+                rowOffset = -1;
+            }
+        } else if (Math.abs(rowDifference) == Math.abs(columnDifference)) {
+            if (rowDifference > 0) {
+                rowOffset = 1;
+            } else {
+                rowOffset = -1;
+            }
+            if (columnDifference > 0) {
+                columnOffset = 1;
+            } else {
+                columnOffset = -1;
+            }
+        } else {
+            return false;
+        }
+
+        int row = source.getRow() + rowOffset;
+        int column = source.getRow() + columnOffset;
+        while (row != target.getRow() || column != target.getColumn()) {
+            if (gameBoard[row][column] != null) {
+                return false;
+            }
+            row += rowOffset;
+            column += columnOffset;
+        }
+        return true;
     }
 
     // ------------------
     // | Private Methods |
     // ------------------
-    private nullBoard() {
+    private void nullBoard() {
         for (int row = 0; row < MAX_ROWS; row++) {
             for (int column = 0; column < MAX_COLUMNS; column++) {
                 this.gameBoard[row][column];
@@ -80,8 +134,7 @@ public class Board {
     public Piece getPiece(Position position) {
         if (!isInBoardBounds(position)) {
             throw new IllegalArgumentException(
-                "Position is outside the board: " + position.toAlgebraic()
-            );
+                    "Position is outside the board: " + position.toAlgebraic());
             return null;
         }
         return gameBoard[position.getRow()][position.getColumn()];
