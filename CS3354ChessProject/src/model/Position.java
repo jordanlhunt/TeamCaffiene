@@ -10,8 +10,8 @@ public final class Position {
     // -------------
     // | Constants |
     // -------------
-    private static final int MAX_ROWS = 8;
-    private static final int MAX_COLUMNS = 8;
+    public static final int MAX_ROWS = 8;
+    public static final int MAX_COLUMNS = 8;
     private static final char FILE_START = 'A';
     private static final char FILE_END = 'H';
     private static final char RANK_START = '1';

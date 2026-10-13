@@ -57,4 +57,54 @@ public abstract class GamePiece {
      * @return a list of possible destination squares
      */
     public abstract List<Position> possibleMoves(Board board);
+
+    /**
+     * Returns the display symbol for the piece
+     * 
+     * @return the display symbol
+     */
+    public abstract String getSymbol();
+
+    /**
+     * Selects the symbol based on the piece color
+     * 
+     * @param blackSymbol the black symbol
+     * @param whiteSymbol the white symbol
+     * @return the selected symbol
+     */
+    protected String selectSymbol(String blackSymbol, String whiteSymbol) {
+        if (this.pieceColor == PieceColor.BLACK) {
+            return blackSymbol;
+        } else {
+            return whiteSymbol;
+        }
+    }
+
+    /**
+     * Add sliding moves in one direction. Knights will have their own movement
+     * mechanic
+     * 
+     * @param board         the current board
+     * @param possibleMoves the list of possibleMove
+     * @param rowStep       the row step
+     * @param columnStep    the column
+     */
+    protected void addSlidingMoves(Board board, List<Position> possibleMoves, int rowStep, int columnStep) {
+        int row = this.position.getRow() + rowStep;
+        int column = this.position.getColumn() + columnStep;
+        while (row >= 0 && row < Position.MAX_ROWS && column >= 0 && column < Position.MAX_COLUMNS) {
+            Position possibleMove = new Position(row, column);
+            GamePiece target = board.getPiece(possibleMove);
+            if (target == null) {
+                possibleMoves.add(possibleMove);
+            } else {
+                if (target.getPieceColor() != this.pieceColor) {
+                    possibleMoves.add(possibleMove);
+                }
+                break;
+            }
+            row += rowStep;
+            column += columnStep;
+        }
+    }
 }
