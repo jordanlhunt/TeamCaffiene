@@ -1,7 +1,6 @@
 package pieces;
 
 import model.Position;
-
 import java.util.List;
 
 /**
@@ -16,7 +15,6 @@ public abstract class GamePiece {
     // ---------------
     // | Constructor |
     // ---------------
-
     /**
      * Creates a chess piece
      *
@@ -31,7 +29,6 @@ public abstract class GamePiece {
     // -----------
     // | Getters |
     // -----------
-
     /**
      * Returns the piece color
      *
