@@ -37,6 +37,19 @@ public class Board {
         placeGamePieces(PieceColor.BLACK);
         placeGamePieces(PieceColor.WHITE);
     }
+    /** Checks whether a position is inside the gameboard.
+     * @param position on the gameboard (row,column)
+     * @return true when the position is inside the bounds of the gameboard
+     */
+    public boolean isInBoardBounds(Position position){
+        return position.isInBoardBounds();
+    }
+
+    public boolean isPathViable(Position source, Position target){
+        if(source.equals(target)){
+            return true;
+        }
+    }
 
     // ------------------
     // | Private Methods |
@@ -61,7 +74,7 @@ public class Board {
     /**
      * Returns the piece at the position
      *
-     * @param position the gameboard (row,column)
+     * @param position on the gameboard (row,column)
      * @return the piece at a given position OR null if the square is empty
      */
     public Piece getPiece(Position position) {
@@ -77,7 +90,7 @@ public class Board {
     /**
      * Places a piece at a given position
      *
-     * @param position the gameboard (row,column)
+     * @param position on the gameboard (row,column)
      * @param gamePiece the gamePiece to set at position
      */
     public void setPieceAtPosition(Position position, gamePiece gamePiece){
@@ -93,4 +106,5 @@ public class Board {
                 }
             }
     }
+
 }
