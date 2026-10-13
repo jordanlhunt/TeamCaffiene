@@ -2,6 +2,8 @@ package pieces;
 
 import model.Position;
 
+import java.util.List;
+
 /**
  * Represents a chess piece
  * This class stores the color and position of all the chess pieces
@@ -39,4 +41,20 @@ public abstract class GamePiece {
         return this.pieceColor;
     }
 
+    /**
+     * Returns the current position
+     *
+     * @return the current position
+     */
+    public Position getPosition() {
+        return this.position;
+    }
+
+    /**
+     * Return the possible destination squares for this gamepiece
+     *
+     * @param board the current board
+     * @return a list of possible destination squares
+     */
+    public abstract List<Position> possibleMoves(Board board);
 }
