@@ -31,7 +31,7 @@ public class Board {
     // -----------------
     // | Public Methods |
     // -----------------
-    public Initialize() {
+    public void Initialize() {
         nullBoard();
         capturedGamePieces.clear();
         placeGamePieces(PieceColor.BLACK);
