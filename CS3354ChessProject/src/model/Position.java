@@ -37,7 +37,7 @@ public final class Position {
      *                                  board
      */
     public Position(int row, int column) {
-        if (!isInBoardBounds(row, column)) {
+        if (isInBoardBounds() == false) {
             throw new IllegalArgumentException("[ERROR] - Position is outside the board");
         } else {
             this.row = row;

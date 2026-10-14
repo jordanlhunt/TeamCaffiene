@@ -48,7 +48,9 @@ public class Board {
         if (pieceColor == PieceColor.BLACK) {
             placeGamePiece(null, pieceColor);
         } else {
-
+            /**
+             * TODO: FINISH THE PLACE PIECES
+             */
         }
     }
 
