@@ -86,6 +86,17 @@ public final class Position {
     }
 
     /**
+     * Convert current position to algebraic
+     * 
+     * @return the algebraic coordinate
+     */
+    public String convertPositionToAlgebraic() {
+        char file = (char) ('A' + this.column);
+        int rank = MAX_ROWS - this.row;
+        return String.valueOf(file) + rank;
+    }
+
+    /**
      * Returns a new position translated (in the mathmatical sense) by the given row
      * and column deltas
      *

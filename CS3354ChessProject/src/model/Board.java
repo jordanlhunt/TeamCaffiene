@@ -39,6 +39,20 @@ public class Board {
     }
 
     /**
+     * Places all of the pieces on the game of a color
+     * 
+     * @param pieceColor
+     */
+
+    public void placeGamePieces(PieceColor pieceColor) {
+        if (pieceColor == PieceColor.BLACK) {
+            placeGamePiece(null, pieceColor);
+        } else {
+
+        }
+    }
+
+    /**
      * Checks whether a position is inside the gameboard.
      * 
      * @param position on the gameboard (row,column)
@@ -50,6 +64,7 @@ public class Board {
 
     /**
      * Checks whether the path between two positions is clear
+     * .
      * 
      * @param source the source position
      * @param target the target position
@@ -111,14 +126,14 @@ public class Board {
     private void nullBoard() {
         for (int row = 0; row < MAX_ROWS; row++) {
             for (int column = 0; column < MAX_COLUMNS; column++) {
-                this.gameBoard[row][column];
+                this.gameBoard[row][column] = null;
             }
         }
     }
 
     private void placeGamePiece(GamePiece gamePiece, PieceColor pieceColor) {
-        Position position = piece.getPosition();
-        squares[position.getRow()][position.getColumn()] = gamePiece;
+        Position position = gamePiece.getPosition();
+        this.gameBoard[position.getRow()][position.getColumn()] = gamePiece;
     }
 
     // ----------
@@ -131,11 +146,10 @@ public class Board {
      * @param position on the gameboard (row,column)
      * @return the piece at a given position OR null if the square is empty
      */
-    public Piece getPiece(Position position) {
+    public GamePiece getPiece(Position position) {
         if (!isInBoardBounds(position)) {
             throw new IllegalArgumentException(
-                    "Position is outside the board: " + position.toAlgebraic());
-            return null;
+                    "Position is outside the board: " + position.convertPositionToAlgebraic());
         }
         return gameBoard[position.getRow()][position.getColumn()];
     }
@@ -143,21 +157,19 @@ public class Board {
     /**
      * Places a piece at a given position
      *
-     * @param position on the gameboard (row,column)
+     * @param position  on the gameboard (row,column)
      * @param gamePiece the gamePiece to set at position
      */
-    public void setPieceAtPosition(Position position, gamePiece gamePiece){
+    public void setPieceAtPosition(Position position, GamePiece gamePiece) {
         if (!isInBoardBounds(position)) {
             throw new IllegalArgumentException(
-                "Position is outside the board: " + position.toAlgebraic()
-            );
-            else
-            {
-                gameBoard[position.getRow() ][position.getColumn()]=gamePiece;
-                if(gamePiece != null){
-                    gamePiece.setPosition(position);
-                }
+                    "Position is outside the board: " + position.convertPositionToAlgebraic());
+        } else {
+            gameBoard[position.getRow()][position.getColumn()] = gamePiece;
+            if (gamePiece != null) {
+                gamePiece.setPosition(position);
             }
-    }
+        }
 
+    }
 }
