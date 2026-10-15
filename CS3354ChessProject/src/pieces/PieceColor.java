@@ -8,10 +8,10 @@ public enum PieceColor {
     BLACK;
 
     public PieceColor oppositeColor() {
-        if (this == WHITE) {
-            return BLACK;
-        } else {
+        if (this == BLACK) {
             return WHITE;
+        } else {
+            return BLACK;
         }
     }
 }

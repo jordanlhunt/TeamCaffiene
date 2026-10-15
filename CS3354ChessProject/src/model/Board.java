@@ -1,8 +1,6 @@
 package model;
 
-import pieces.GamePiece;
-import pieces.Pawn;
-import pieces.PieceColor;
+import pieces.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,8 +71,14 @@ public class Board {
         for (int column = 0; column < MAX_COLUMNS; column++) {
             placeGamePiece(new Pawn(pieceColor, new Position(pawnRow, column)));
         }
-
-        // TODO: Create all the other types
+        placeGamePiece(new Rook(pieceColor, new Position(backRow, COLUMN_A)));
+        placeGamePiece(new Knight(pieceColor, new Position(backRow, COLUMN_B)));
+        placeGamePiece(new Bishop(pieceColor, new Position(backRow, COLUMN_C)));
+        placeGamePiece(new Queen(pieceColor, new Position(backRow, COLUMN_D)));
+        placeGamePiece(new King(pieceColor, new Position(backRow, COLUMN_E)));
+        placeGamePiece(new Bishop(pieceColor, new Position(backRow, COLUMN_F)));
+        placeGamePiece(new Knight(pieceColor, new Position(backRow, COLUMN_G)));
+        placeGamePiece(new Rook(pieceColor, new Position(backRow, COLUMN_H)));
     }
 
     /**
