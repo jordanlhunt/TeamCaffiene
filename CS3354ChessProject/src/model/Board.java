@@ -77,6 +77,15 @@ public class Board {
         // TODO: Create all the other types
     }
 
+    /**
+     * Checks whether a position is inside the gameboard.
+     *
+     * @param position on the gameboard (row,column)
+     * @return true when the position is inside the bounds of the gameboard
+     */
+    public boolean isInBoardBounds(Position position) {
+        return position.isInBoardBounds();
+    }
 
     /**
      * Checks whether a position is outside the gameboard.
