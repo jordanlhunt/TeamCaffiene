@@ -75,15 +75,16 @@ public class Board {
 
         // TODO: Create all the other types
     }
+    
 
     /**
-     * Checks whether a position is inside the gameboard.
+     * Checks whether a position is outside the gameboard.
      *
      * @param position on the gameboard (row,column)
-     * @return true when the position is inside the bounds of the gameboard
+     * @return true when the position is outside the bounds of the gameboard
      */
-    public boolean isInBoardBounds(Position position) {
-        return position.isInBoardBounds();
+    public boolean isOutOfBounds(Position position) {
+        return position.isOutOfBounds();
     }
 
     /**
@@ -98,7 +99,7 @@ public class Board {
         if (source.equals(target)) {
             return true;
         }
-        int rowDifference = target.getRow() - source.getColumn();
+        int rowDifference = target.getRow() - source.getRow();
         int columnDifference = target.getColumn() - source.getColumn();
         int rowOffset = 0;
         int columnOffset = 0;
@@ -133,7 +134,7 @@ public class Board {
         }
 
         int row = source.getRow() + rowOffset;
-        int column = source.getRow() + columnOffset;
+        int column = source.getColumn() + columnOffset;
         while (row != target.getRow() || column != target.getColumn()) {
             if (gameBoard[row][column] != null) {
                 return false;
@@ -180,7 +181,7 @@ public class Board {
      * @return the piece at a given position OR null if the square is empty
      */
     public GamePiece getPiece(Position position) {
-        if (!isInBoardBounds(position)) {
+        if (isOutOfBounds(position)) {
             throw new IllegalArgumentException(
                     "Position is outside the board: " + position.convertPositionToAlgebraic());
         }
@@ -194,7 +195,7 @@ public class Board {
      * @param gamePiece the gamePiece to set at position
      */
     public void setPieceAtPosition(Position position, GamePiece gamePiece) {
-        if (!isInBoardBounds(position)) {
+        if (isOutOfBounds(position)) {
             throw new IllegalArgumentException(
                     "Position is outside the board: " + position.convertPositionToAlgebraic());
         } else {

@@ -50,15 +50,6 @@ public final class Position {
     // ------------------
 
     /**
-     * Returns whether the row and column in the bounds of the board
-     *
-     * @return true if the row and column coordinate is valid
-     */
-    public boolean isInBoardBounds() {
-        return (row >= 0 && row < MAX_ROWS && column >= 0 && column < MAX_COLUMNS);
-    }
-
-    /**
      * Converts algebraic notation to a position
      *
      * @param algebraicString the algebraic coordinate in the form "A-H"+"0-8"
@@ -86,8 +77,24 @@ public final class Position {
     }
 
     /**
+     * Returns whether the row and column in the bounds of the board
+     *
+     * @return true if the row and column coordinate is valid
+     */
+    public boolean isInBoardBounds() {
+        return (row >= 0 && row < MAX_ROWS && column >= 0 && column < MAX_COLUMNS);
+    }
+
+    /**
+     * Checks whether the row and column are OUTSIDE the bounds of the board.
+     */
+    public boolean isOutOfBounds() {
+        return !isInBoardBounds();
+    }
+
+    /**
      * Convert current position to algebraic
-     * 
+     *
      * @return the algebraic coordinate
      */
     public String convertPositionToAlgebraic() {
