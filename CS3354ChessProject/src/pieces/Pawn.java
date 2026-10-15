@@ -28,6 +28,10 @@ public class Pawn extends GamePiece {
         super(pieceColor, startingPosition);
     }
 
+
+    // ------------------
+    // | Public Methods |
+    // ------------------
     @Override
     public List<Position> possibleMoves(Board board) {
         List<Position> moves = new ArrayList<>();
