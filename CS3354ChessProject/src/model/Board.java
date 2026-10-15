@@ -1,9 +1,10 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
 import pieces.GamePiece;
 import pieces.PieceColor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Board {
 
@@ -12,11 +13,24 @@ public class Board {
     // ------------
     private static final int MAX_ROWS = 8;
     private static final int MAX_COLUMNS = 8;
-
+    // Starting Rows
+    private static final int ROW_BLACK_BACK = 0;
+    private static final int ROW_BLACK_PAWN = 1;
+    private static final int ROW_WHITE_PAWN = 6;
+    private static final int ROW_WHITE_BACK = 7;
+    // Starting Columns
+    private static final int COLUMN_A = 0;
+    private static final int COLUMN_B = 1;
+    private static final int COLUMN_C = 2;
+    private static final int COLUMN_D = 3;
+    private static final int COLUMN_E = 4;
+    private static final int COLUMN_F = 5;
+    private static final int COLUMN_G = 6;
+    private static final int COLUMN_H = 7;
     // ---------------------
     // | Instance Variables |
     // ---------------------
-    private GamePiece gameBoard[][];
+    private final GamePiece gameBoard[][];
     private final List<GamePiece> capturedGamePieces;
 
     // ---------------
@@ -39,24 +53,32 @@ public class Board {
     }
 
     /**
-     * Places all of the pieces on the game of a color
-     * 
-     * @param pieceColor
+     * Places all the pieces on the game of a color
+     *
+     * @param pieceColor the color of the gamePiece
      */
 
     public void placeGamePieces(PieceColor pieceColor) {
+        int backRow;
+        int pawnRow;
         if (pieceColor == PieceColor.BLACK) {
-            placeGamePiece(null, pieceColor);
+            backRow = ROW_BLACK_BACK;
+            pawnRow = ROW_BLACK_PAWN;
         } else {
-            /**
-             * TODO: FINISH THE PLACE PIECES
-             */
+            backRow = ROW_WHITE_BACK;
+            pawnRow = ROW_WHITE_PAWN;
         }
+        // Place the pawns
+        for (int column = 0; column < MAX_COLUMNS; column++) {
+            placeGamePiece(new Pawn(pieceColor, new Position(pawnRow, column)));
+        }
+
+        // TODO: Create all the other types
     }
 
     /**
      * Checks whether a position is inside the gameboard.
-     * 
+     *
      * @param position on the gameboard (row,column)
      * @return true when the position is inside the bounds of the gameboard
      */
@@ -67,7 +89,7 @@ public class Board {
     /**
      * Checks whether the path between two positions is clear
      * .
-     * 
+     *
      * @param source the source position
      * @param target the target position
      * @return true if the path is clear
@@ -125,6 +147,10 @@ public class Board {
     // ------------------
     // | Private Methods |
     // ------------------
+
+    /**
+     * Resets the board to null values at all positions
+     */
     private void nullBoard() {
         for (int row = 0; row < MAX_ROWS; row++) {
             for (int column = 0; column < MAX_COLUMNS; column++) {
@@ -133,14 +159,19 @@ public class Board {
         }
     }
 
-    private void placeGamePiece(GamePiece gamePiece, PieceColor pieceColor) {
+    /**
+     * Places a particular game piece on the board
+     *
+     * @param gamePiece the game piece to place
+     */
+    private void placeGamePiece(GamePiece gamePiece) {
         Position position = gamePiece.getPosition();
         this.gameBoard[position.getRow()][position.getColumn()] = gamePiece;
     }
 
-    // ----------
-    // | Getters |
-    // ----------
+    // ---------------------
+    // | Getters & Setters |
+    // ---------------------
 
     /**
      * Returns the piece at the position
