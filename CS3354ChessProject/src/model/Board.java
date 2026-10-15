@@ -1,6 +1,7 @@
 package model;
 
 import pieces.GamePiece;
+import pieces.Pawn;
 import pieces.PieceColor;
 
 import java.util.ArrayList;
@@ -75,7 +76,7 @@ public class Board {
 
         // TODO: Create all the other types
     }
-    
+
 
     /**
      * Checks whether a position is outside the gameboard.
