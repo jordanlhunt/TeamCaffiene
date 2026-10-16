@@ -24,13 +24,13 @@ public class Bishop extends GamePiece {
         super(pieceColor, startPosition);
     }
 
-    @Override
-    /**
+        /**
      * Returns a list of all the possible moves
      *
      * @param board the current board
      * @return a list of all possible moves
      */
+    @Override
     public List<Position> possibleMoves(Board board) {
         List<Position> possibleMoves = new ArrayList<>();
         for (int direction[] : BISHOP_DIRECTIONS) {
@@ -38,7 +38,10 @@ public class Bishop extends GamePiece {
         }
         return possibleMoves;
     }
-
+     /**
+     * Returns the symbol for the bishop.
+     * @return the king symbol
+     */
     @Override
     public String getSymbol() {
         return selectSymbol("♝", "♗");

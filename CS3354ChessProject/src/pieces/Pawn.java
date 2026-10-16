@@ -32,6 +32,13 @@ public class Pawn extends GamePiece {
     // ------------------
     // | Public Methods |
     // ------------------
+
+           /**
+     * Returns a list of all the possible moves
+     *
+     * @param board the current board
+     * @return a list of all possible moves
+     */
     @Override
     public List<Position> possibleMoves(Board board) {
         List<Position> moves = new ArrayList<>();
@@ -83,7 +90,10 @@ public class Pawn extends GamePiece {
         }
         return moves;
     }
-
+     /**
+     * Returns the symbol for the pawn.
+     * @return the king symbol
+     */
     @Override
     public String getSymbol() {
         return selectSymbol("♟", "♙");

@@ -62,8 +62,9 @@ public class King extends GamePiece {
         return possibleMoves;
     }
 
-    /**
-     * @return
+  /**
+     * Returns the symbol for the king.
+     * @return the king symbol
      */
     @Override
     public String getSymbol() {

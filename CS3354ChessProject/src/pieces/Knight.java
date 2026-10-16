@@ -62,6 +62,10 @@ public class Knight extends GamePiece {
         return moves;
     }
 
+      /**
+     * Returns the symbol for the knight.
+     * @return the king symbol
+     */
     @Override
     public String getSymbol() {
         return selectSymbol("♞", "♘");

@@ -34,9 +34,11 @@ public class Queen extends GamePiece {
     // ------------------
     // | Public Methods |
     // ------------------
-    /**
+       /**
+     * Returns a list of all the possible moves
+     *
      * @param board the current board
-     * @return
+     * @return a list of all possible moves
      */
     @Override
     public List<Position> possibleMoves(Board board) {
@@ -47,8 +49,9 @@ public class Queen extends GamePiece {
         return possibleMoves;
     }
 
-    /**
-     * @return
+     /**
+     * Returns the symbol for the bishop.
+     * @return the king symbol
      */
     @Override
     public String getSymbol() {

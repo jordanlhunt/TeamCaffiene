@@ -31,13 +31,14 @@ public class Rook extends GamePiece {
     // | Public Methods |
     // ------------------
 
-    @Override
-    /**
+        /**
      * Returns a list of all the possible moves
      *
      * @param board the current board
      * @return a list of all possible moves
      */
+    @Override
+
     public List<Position> possibleMoves(Board board) {
         List<Position> moves = new ArrayList<>();
         for (int[] direction : ROOK_DIRECTIONS) {
@@ -47,6 +48,10 @@ public class Rook extends GamePiece {
     }
 
     @Override
+    /**
+     * Returns the symbol for the rook.
+     * @return the rook symbol
+     */
     public String getSymbol() {
         return selectSymbol("♜", "♖");
     }
