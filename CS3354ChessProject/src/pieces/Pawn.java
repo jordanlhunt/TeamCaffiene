@@ -1,9 +1,10 @@
 package pieces;
 
-import java.util.ArrayList;
-import java.util.List;
 import model.Board;
 import model.Position;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a pawn
@@ -13,7 +14,7 @@ public class Pawn extends GamePiece {
     // -------------
     // | Constants |
     // -------------
-    final int[] DIAGONAL_CAPTURE_OFFSETS = { -1, 1 };
+    final int[] DIAGONAL_CAPTURE_OFFSETS = {-1, 1};
 
     // --------------
     // | Constructor |
@@ -33,7 +34,7 @@ public class Pawn extends GamePiece {
     // | Public Methods |
     // ------------------
 
-           /**
+    /**
      * Returns a list of all the possible moves
      *
      * @param board the current board
@@ -52,8 +53,8 @@ public class Pawn extends GamePiece {
         }
         // Regular movement
         Position oneStep = new Position(
-            getPosition().getRow() + direction,
-            getPosition().getColumn()
+                getPosition().getRow() + direction,
+                getPosition().getColumn()
         );
         // check if the space ahead is bounds and also free
         if (board.isInBoardBounds(oneStep) && board.getPiece(oneStep) == null) {
@@ -61,12 +62,12 @@ public class Pawn extends GamePiece {
             // If currently start row let the pawn move two spaces
             if (getPosition().getRow() == startRow) {
                 Position twoStep = new Position(
-                    getPosition().getRow() + 2 * direction,
-                    getPosition().getColumn()
+                        getPosition().getRow() + 2 * direction,
+                        getPosition().getColumn()
                 );
                 if (
-                    board.isInBoardBounds(twoStep) &&
-                    board.getPiece(twoStep) == null
+                        board.isInBoardBounds(twoStep) &&
+                                board.getPiece(twoStep) == null
                 ) {
                     moves.add(twoStep);
                 }
@@ -75,14 +76,14 @@ public class Pawn extends GamePiece {
         // Capture movement
         for (int offset : DIAGONAL_CAPTURE_OFFSETS) {
             Position possibleCapture = new Position(
-                getPosition().getRow() + direction,
-                getPosition().getColumn() + offset
+                    getPosition().getRow() + direction,
+                    getPosition().getColumn() + offset
             );
             if (board.isInBoardBounds(possibleCapture)) {
                 GamePiece targetGamePiece = board.getPiece(possibleCapture);
                 if (
-                    targetGamePiece != null &&
-                    targetGamePiece.getPieceColor() != this.getPieceColor()
+                        targetGamePiece != null &&
+                                targetGamePiece.getPieceColor() != this.getPieceColor()
                 ) {
                     moves.add(possibleCapture);
                 }
@@ -90,8 +91,10 @@ public class Pawn extends GamePiece {
         }
         return moves;
     }
-     /**
+
+    /**
      * Returns the symbol for the pawn.
+     *
      * @return the king symbol
      */
     @Override

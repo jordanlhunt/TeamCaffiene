@@ -1,8 +1,9 @@
 package pieces;
 
-import java.util.List;
 import model.Board;
 import model.Position;
+
+import java.util.List;
 
 /**
  * Represents a chess piece
@@ -17,6 +18,7 @@ public abstract class GamePiece {
     // ---------------
     // | Constructor |
     // ---------------
+
     /**
      * Creates a chess piece
      *
@@ -31,6 +33,7 @@ public abstract class GamePiece {
     // ---------------------
     // | Getters & Setters |
     // --------------------
+
     /**
      * Returns the piece color
      *
@@ -95,18 +98,18 @@ public abstract class GamePiece {
      * @param columnOffset  the column offset
      */
     protected void addSlidingMoves(
-        Board board,
-        List<Position> possibleMoves,
-        int rowOffset,
-        int columnOffset
+            Board board,
+            List<Position> possibleMoves,
+            int rowOffset,
+            int columnOffset
     ) {
         int row = this.position.getRow() + rowOffset;
         int column = this.position.getColumn() + columnOffset;
         while (
-            row >= 0 &&
-            row < Position.MAX_ROWS &&
-            column >= 0 &&
-            column < Position.MAX_COLUMNS
+                row >= 0 &&
+                        row < Position.MAX_ROWS &&
+                        column >= 0 &&
+                        column < Position.MAX_COLUMNS
         ) {
             Position possibleMove = new Position(row, column);
             GamePiece target = board.getPiece(possibleMove);

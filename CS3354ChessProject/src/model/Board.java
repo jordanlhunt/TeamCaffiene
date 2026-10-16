@@ -1,8 +1,9 @@
 package model;
 
+import pieces.*;
+
 import java.util.ArrayList;
 import java.util.List;
-import pieces.*;
 
 public class Board {
 
@@ -196,8 +197,8 @@ public class Board {
     public GamePiece getPiece(Position position) {
         if (isOutOfBounds(position)) {
             throw new IllegalArgumentException(
-                "Position is outside the board: " +
-                    position.convertPositionToAlgebraic()
+                    "Position is outside the board: " +
+                            position.convertPositionToAlgebraic()
             );
         }
         return gameBoard[position.getRow()][position.getColumn()];
@@ -212,8 +213,8 @@ public class Board {
     public void setPieceAtPosition(Position position, GamePiece gamePiece) {
         if (isOutOfBounds(position)) {
             throw new IllegalArgumentException(
-                "Position is outside the board: " +
-                    position.convertPositionToAlgebraic()
+                    "Position is outside the board: " +
+                            position.convertPositionToAlgebraic()
             );
         } else {
             gameBoard[position.getRow()][position.getColumn()] = gamePiece;

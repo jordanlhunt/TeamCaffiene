@@ -1,9 +1,10 @@
 package pieces;
 
-import java.util.ArrayList;
-import java.util.List;
 import model.Board;
 import model.Position;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Rook extends GamePiece {
 
@@ -11,11 +12,14 @@ public class Rook extends GamePiece {
     // | Constants |
     // -------------
     private static final int[][] ROOK_DIRECTIONS = {
-        { -1, 0 }, // Up
-        { 1, 0 }, // Down
-        { 0, 1 }, // Right
-        { 0, -1 }, // Left
+            {-1, 0}, // Up
+            {1, 0}, // Down
+            {0, 1}, // Right
+            {0, -1}, // Left
     };
+    // --------------
+    // | Constructor |
+    // --------------
 
     /**
      * Creates a rook.
@@ -31,7 +35,7 @@ public class Rook extends GamePiece {
     // | Public Methods |
     // ------------------
 
-        /**
+    /**
      * Returns a list of all the possible moves
      *
      * @param board the current board

@@ -1,9 +1,10 @@
 package pieces;
 
-import java.util.ArrayList;
-import java.util.List;
 import model.Board;
 import model.Position;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Queen extends GamePiece {
 
@@ -11,15 +12,18 @@ public class Queen extends GamePiece {
     // | Constants |
     // -------------
     private static final int[][] QUEEN_DIRECTIONS = {
-        { -1, 0 },
-        { 1, 0 },
-        { 0, -1 },
-        { 0, 1 },
-        { -1, -1 },
-        { -1, 1 },
-        { 1, -1 },
-        { 1, 1 },
+            {-1, 0},
+            {1, 0},
+            {0, -1},
+            {0, 1},
+            {-1, -1},
+            {-1, 1},
+            {1, -1},
+            {1, 1},
     };
+    // --------------
+    // | Constructor |
+    // --------------
 
     /**
      * Creates a queen.
@@ -34,7 +38,8 @@ public class Queen extends GamePiece {
     // ------------------
     // | Public Methods |
     // ------------------
-       /**
+
+    /**
      * Returns a list of all the possible moves
      *
      * @param board the current board
@@ -49,8 +54,9 @@ public class Queen extends GamePiece {
         return possibleMoves;
     }
 
-     /**
+    /**
      * Returns the symbol for the bishop.
+     *
      * @return the king symbol
      */
     @Override

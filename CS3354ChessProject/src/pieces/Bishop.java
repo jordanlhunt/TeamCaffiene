@@ -1,18 +1,25 @@
 package pieces;
 
-import java.util.ArrayList;
-import java.util.List;
 import model.Board;
 import model.Position;
 
-public class Bishop extends GamePiece {
+import java.util.ArrayList;
+import java.util.List;
 
+public class Bishop extends GamePiece {
+    // -------------
+    // | Constants |
+    // -------------
     private static final int[][] BISHOP_DIRECTIONS = {
-        { -1, -1 },
-        { -1, 1 },
-        { 1, -1 },
-        { 1, 1 },
+            {-1, -1},
+            {-1, 1},
+            {1, -1},
+            {1, 1},
     };
+
+    // --------------
+    // | Constructor |
+    // --------------
 
     /**
      * Creates a Bishop
@@ -24,7 +31,7 @@ public class Bishop extends GamePiece {
         super(pieceColor, startPosition);
     }
 
-        /**
+    /**
      * Returns a list of all the possible moves
      *
      * @param board the current board
@@ -38,8 +45,10 @@ public class Bishop extends GamePiece {
         }
         return possibleMoves;
     }
-     /**
+
+    /**
      * Returns the symbol for the bishop.
+     *
      * @return the king symbol
      */
     @Override

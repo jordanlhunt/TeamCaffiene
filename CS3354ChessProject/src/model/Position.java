@@ -38,9 +38,9 @@ public final class Position {
      *                                  board
      */
     public Position(int row, int column) {
-        if (isInBoardBounds() == false) {
+        if (isOutOfBounds()) {
             throw new IllegalArgumentException(
-                "[ERROR] - Position is outside the board"
+                    "[ERROR] - Position is outside the board"
             );
         } else {
             this.row = row;
@@ -61,25 +61,25 @@ public final class Position {
     public static Position convertAlgebraicToPosition(String algebraicString) {
         if (algebraicString == null) {
             throw new IllegalArgumentException(
-                "[ERROR] - Algebraic coordinate cannot be null."
+                    "[ERROR] - Algebraic coordinate cannot be null."
             );
         }
         String trimmedString = algebraicString.trim().toUpperCase();
         if (trimmedString.length() != COORDINATE_LENGTH) {
             throw new IllegalArgumentException(
-                "[ERROR] - Coordinate must contain a file letter."
+                    "[ERROR] - Coordinate must contain a file letter."
             );
         }
         char file = trimmedString.charAt(0);
         char rank = trimmedString.charAt(1);
         if (file < FILE_START || file > FILE_END) {
             throw new IllegalArgumentException(
-                "[ERROR] - File must be 'A' through 'H' inclusive."
+                    "[ERROR] - File must be 'A' through 'H' inclusive."
             );
         }
         if (rank < RANK_START || rank > RANK_END) {
             throw new IllegalArgumentException(
-                "[ERROR] - Rank must be 0-8 inclusive."
+                    "[ERROR] - Rank must be 0-8 inclusive."
             );
         }
         int row = MAX_ROWS - (rank - RANK_START + 1);
@@ -94,7 +94,7 @@ public final class Position {
      */
     public boolean isInBoardBounds() {
         return (
-            row >= 0 && row < MAX_ROWS && column >= 0 && column < MAX_COLUMNS
+                row >= 0 && row < MAX_ROWS && column >= 0 && column < MAX_COLUMNS
         );
     }
 
@@ -117,7 +117,7 @@ public final class Position {
     }
 
     /**
-     * Returns a new position translated (in the mathmatical sense) by the given row
+     * Returns a new position translated (in the mathematical sense) by the given row
      * and column deltas
      *
      * @param rowDelta    the row change
@@ -149,10 +149,9 @@ public final class Position {
         if (this == otherObject) {
             return true;
         }
-        if (!(otherObject instanceof Position)) {
+        if (!(otherObject instanceof Position otherPosition)) {
             return false;
         }
-        Position otherPosition = (Position) otherObject;
         return row == otherPosition.row && column == otherPosition.column;
     }
 
