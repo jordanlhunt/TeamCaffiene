@@ -1,6 +1,7 @@
 package model;
 
 public class MoveResult {
+
     // --------------------
     // | Member Variables |
     // --------------------
@@ -15,7 +16,6 @@ public class MoveResult {
         this.isSuccessful = isSuccessful;
         this.message = message;
     }
-
 
     // ------------------
     // | Public Methods |
@@ -49,6 +49,7 @@ public class MoveResult {
     public boolean getIsSuccessful() {
         return this.isSuccessful;
     }
+
     // -----------
     // | Getters |
     // -----------

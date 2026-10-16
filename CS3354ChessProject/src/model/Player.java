@@ -49,6 +49,6 @@ public class Player {
     // -------------
     @Override
     public String toString() {
-        return (this.playerName + " | " + this.pieceColor);
+        return this.playerName + " | " + this.pieceColor;
     }
 }

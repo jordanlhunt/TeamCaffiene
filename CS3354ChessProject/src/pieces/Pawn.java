@@ -1,19 +1,20 @@
 package pieces;
 
-import model.Board;
-import model.Position;
-
 import java.util.ArrayList;
 import java.util.List;
+import model.Board;
+import model.Position;
 
 /**
  * Represents a pawn
  */
 public class Pawn extends GamePiece {
+
     // -------------
     // | Constants |
     // -------------
     final int[] DIAGONAL_CAPTURE_OFFSETS = { -1, 1 };
+
     // --------------
     // | Constructor |
     // --------------
@@ -27,7 +28,6 @@ public class Pawn extends GamePiece {
     public Pawn(PieceColor pieceColor, Position startingPosition) {
         super(pieceColor, startingPosition);
     }
-
 
     // ------------------
     // | Public Methods |
@@ -44,25 +44,39 @@ public class Pawn extends GamePiece {
             startRow = 1;
         }
         // Regular movement
-        Position oneStep = new Position(getPosition().getRow() + direction, getPosition().getColumn());
+        Position oneStep = new Position(
+            getPosition().getRow() + direction,
+            getPosition().getColumn()
+        );
         // check if the space ahead is bounds and also free
         if (board.isInBoardBounds(oneStep) && board.getPiece(oneStep) == null) {
             moves.add(oneStep);
             // If currently start row let the pawn move two spaces
             if (getPosition().getRow() == startRow) {
-                Position twoStep = new Position(getPosition().getRow() + 2 * direction, getPosition().getColumn());
-                if (board.isInBoardBounds(twoStep) && board.getPiece(twoStep) == null) {
+                Position twoStep = new Position(
+                    getPosition().getRow() + 2 * direction,
+                    getPosition().getColumn()
+                );
+                if (
+                    board.isInBoardBounds(twoStep) &&
+                    board.getPiece(twoStep) == null
+                ) {
                     moves.add(twoStep);
                 }
             }
         }
         // Capture movement
         for (int offset : DIAGONAL_CAPTURE_OFFSETS) {
-            Position possibleCapture = new Position(getPosition().getRow() + direction,
-                    getPosition().getColumn() + offset);
+            Position possibleCapture = new Position(
+                getPosition().getRow() + direction,
+                getPosition().getColumn() + offset
+            );
             if (board.isInBoardBounds(possibleCapture)) {
                 GamePiece targetGamePiece = board.getPiece(possibleCapture);
-                if (targetGamePiece != null && targetGamePiece.getPieceColor() != this.getPieceColor()) {
+                if (
+                    targetGamePiece != null &&
+                    targetGamePiece.getPieceColor() != this.getPieceColor()
+                ) {
                     moves.add(possibleCapture);
                 }
             }

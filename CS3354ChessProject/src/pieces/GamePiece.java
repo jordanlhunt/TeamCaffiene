@@ -1,8 +1,8 @@
 package pieces;
 
+import java.util.List;
 import model.Board;
 import model.Position;
-import java.util.List;
 
 /**
  * Represents a chess piece
@@ -10,6 +10,7 @@ import java.util.List;
  * There will be no "gamepieces" instances so the class will be abstract
  */
 public abstract class GamePiece {
+
     private final PieceColor pieceColor;
     private Position position;
 
@@ -65,14 +66,14 @@ public abstract class GamePiece {
 
     /**
      * Returns the display symbol for the piece
-     * 
+     *
      * @return the display symbol
      */
     public abstract String getSymbol();
 
     /**
      * Selects the symbol based on the piece color
-     * 
+     *
      * @param blackSymbol the black symbol
      * @param whiteSymbol the white symbol
      * @return the selected symbol
@@ -87,16 +88,26 @@ public abstract class GamePiece {
 
     /**
      * Add sliding moves in one direction. Queens, Bishops, and Rooks
-     * 
+     *
      * @param board         the current board
      * @param possibleMoves the list of possibleMove
      * @param rowOffset     the row offset
      * @param columnOffset  the column offset
      */
-    protected void addSlidingMoves(Board board, List<Position> possibleMoves, int rowOffset, int columnOffset) {
+    protected void addSlidingMoves(
+        Board board,
+        List<Position> possibleMoves,
+        int rowOffset,
+        int columnOffset
+    ) {
         int row = this.position.getRow() + rowOffset;
         int column = this.position.getColumn() + columnOffset;
-        while (row >= 0 && row < Position.MAX_ROWS && column >= 0 && column < Position.MAX_COLUMNS) {
+        while (
+            row >= 0 &&
+            row < Position.MAX_ROWS &&
+            column >= 0 &&
+            column < Position.MAX_COLUMNS
+        ) {
             Position possibleMove = new Position(row, column);
             GamePiece target = board.getPiece(possibleMove);
             if (target == null) {

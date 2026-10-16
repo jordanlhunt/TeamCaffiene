@@ -7,6 +7,7 @@ import java.util.Objects;
  * is 'final' to be read-only
  */
 public final class Position {
+
     // -------------
     // | Constants |
     // -------------
@@ -38,7 +39,9 @@ public final class Position {
      */
     public Position(int row, int column) {
         if (isInBoardBounds() == false) {
-            throw new IllegalArgumentException("[ERROR] - Position is outside the board");
+            throw new IllegalArgumentException(
+                "[ERROR] - Position is outside the board"
+            );
         } else {
             this.row = row;
             this.column = column;
@@ -57,23 +60,31 @@ public final class Position {
      */
     public static Position convertAlgebraicToPosition(String algebraicString) {
         if (algebraicString == null) {
-            throw new IllegalArgumentException("[ERROR] - Algebraic coordinate cannot be null.");
+            throw new IllegalArgumentException(
+                "[ERROR] - Algebraic coordinate cannot be null."
+            );
         }
         String trimmedString = algebraicString.trim().toUpperCase();
         if (trimmedString.length() != COORDINATE_LENGTH) {
-            throw new IllegalArgumentException("[ERROR] - Coordinate must contain a file letter.");
+            throw new IllegalArgumentException(
+                "[ERROR] - Coordinate must contain a file letter."
+            );
         }
         char file = trimmedString.charAt(0);
         char rank = trimmedString.charAt(1);
         if (file < FILE_START || file > FILE_END) {
-            throw new IllegalArgumentException("[ERROR] - File must be 'A' through 'H' inclusive.");
+            throw new IllegalArgumentException(
+                "[ERROR] - File must be 'A' through 'H' inclusive."
+            );
         }
         if (rank < RANK_START || rank > RANK_END) {
-            throw new IllegalArgumentException("[ERROR] - Rank must be 0-8 inclusive.");
+            throw new IllegalArgumentException(
+                "[ERROR] - Rank must be 0-8 inclusive."
+            );
         }
         int row = MAX_ROWS - (rank - RANK_START + 1);
         int column = file - FILE_START;
-        return (new Position(row, column));
+        return new Position(row, column);
     }
 
     /**
@@ -82,7 +93,9 @@ public final class Position {
      * @return true if the row and column coordinate is valid
      */
     public boolean isInBoardBounds() {
-        return (row >= 0 && row < MAX_ROWS && column >= 0 && column < MAX_COLUMNS);
+        return (
+            row >= 0 && row < MAX_ROWS && column >= 0 && column < MAX_COLUMNS
+        );
     }
 
     /**
@@ -112,7 +125,7 @@ public final class Position {
      * @return the translated position
      */
     public Position translatedBy(int rowDelta, int columnDelta) {
-        return (new Position(this.row + rowDelta, this.column + columnDelta));
+        return new Position(this.row + rowDelta, this.column + columnDelta);
     }
 
     // -----------
@@ -140,7 +153,7 @@ public final class Position {
             return false;
         }
         Position otherPosition = (Position) otherObject;
-        return (row == otherPosition.row && column == otherPosition.column);
+        return row == otherPosition.row && column == otherPosition.column;
     }
 
     @Override
