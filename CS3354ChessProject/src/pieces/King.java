@@ -67,6 +67,6 @@ public class King extends GamePiece {
      */
     @Override
     public String getSymbol() {
-        return "";
+        return selectSymbol("♚", "♔")
     }
 }
