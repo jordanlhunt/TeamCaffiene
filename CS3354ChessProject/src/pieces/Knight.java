@@ -26,14 +26,16 @@ public class Knight extends GamePiece {
             Position possibleMove = new Position(getPosition().getRow() + direction[0], getPosition().getColumn() + direction[1]);
             if (board.isInBoardBounds(possibleMove)) {
                 GamePiece possibleCapture = board.getPiece(possibleMove);
-                if(possibleCapture == null || possibleCapture.getPieceColor() != this.getPieceColor()) {
+                if (possibleCapture == null || possibleCapture.getPieceColor() != this.getPieceColor()) {
                     moves.add(possibleMove);
                 }
+            }
         }
+        return moves;
     }
 
     @Override
     public String getSymbol() {
-        return "";
+        return selectSymbol("♞", "♘");
     }
 }
