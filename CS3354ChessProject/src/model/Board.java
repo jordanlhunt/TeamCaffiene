@@ -38,13 +38,13 @@ public class Board {
     public Board() {
         this.gameBoard = new GamePiece[MAX_ROWS][MAX_COLUMNS];
         this.capturedGamePieces = new ArrayList<>();
-        Initialize();
+        initialize();
     }
 
     // -----------------
     // | Public Methods |
     // -----------------
-    public void Initialize() {
+    public void initialize() {
         nullBoard();
         capturedGamePieces.clear();
         placeGamePieces(PieceColor.BLACK);
