@@ -34,7 +34,7 @@ public class ConsoleUI {
         this.scanner = new Scanner(System.in);
         this.inputParser = new InputParser();
     }
-// -------------
+    // -------------
     // | Public Methods |
     // -------------
 
@@ -43,7 +43,8 @@ public class ConsoleUI {
      */
     public void runGame() {
         System.out.println("Console Chess by Team Caffeine (Jordan Hunt)");
-        System.out.println("How to play\n-------\nWhite moves first. Enter movement commands as [FROM] [TO], for example 'E2 E4' will move the target at E2 to the space E4\nEnter 'quit' or 'exit' to shutdown the game\n Have fun!");
+        System.out.println(
+                "How to play\n-------\nWhite moves first. Enter movement commands as [FROM] [TO], for example 'E2 E4' will move the target at E2 to the space E4\nEnter 'quit' or 'exit' to shutdown the game\n Have fun!");
         game.startGame();
         boolean isGameRunning = true;
         while (isGameRunning) {
@@ -58,7 +59,8 @@ public class ConsoleUI {
             } else {
                 try {
                     MoveCommand moveCommand = inputParser.parseMove(input);
-                    MoveResult moveResult = game.tryMove(moveCommand.getSourcePosition(), moveCommand.getDestinaPosition());
+                    MoveResult moveResult = game.tryMove(moveCommand.getSourcePosition(),
+                            moveCommand.getDestinaPosition());
                     System.out.println(moveResult.getMessage());
                     if (!moveResult.getIsSuccessful()) {
                         System.out.println("Invalid Move or Command");
@@ -73,27 +75,26 @@ public class ConsoleUI {
     }
     // -------------------
     // | Private Methods |
-// -------------------
-
+    // -------------------
 
     private void displayCurrentBoard(Board board) {
         System.out.println();
-        System.out.println("   A  B  C  D  E  F  G  H");
+        System.out.println("  A  B  C  D  E  F  G  H");
 
         for (int row = 0; row < 8; row++) {
-            System.out.print((8 - row) + " ");
+            System.out.print((8 - row) + "  ");
             for (int column = 0; column < 8; column++) {
                 GamePiece piece = board.getPiece(new Position(row, column));
                 if (piece == null) {
-                    System.out.print("## ");
+                    System.out.print("#  ");
                 } else {
-                    System.out.print(piece.getSymbol() + " ");
+                    System.out.print(piece.getSymbol() + "  ");
                 }
             }
             System.out.println(" " + (8 - row));
         }
 
-        System.out.println("   A  B  C  D  E  F  G  H");
+        System.out.println("  A  B  C  D  E  F  G  H");
         System.out.println();
     }
 

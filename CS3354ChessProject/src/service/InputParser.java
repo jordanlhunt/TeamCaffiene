@@ -6,7 +6,6 @@ import model.Position;
  * Parses console input for chess commands
  */
 public class InputParser {
-
     private final static String[] QUIT_COMMANDS = {
             "quit", "exit", "shutdown", "end"
     };
@@ -44,7 +43,6 @@ public class InputParser {
         if (trimmed.isEmpty()) {
             throw new IllegalArgumentException("[INVALID COMMAND] - Input cannot be empty.");
         }
-
         String[] parts = trimmed.split("\\s+");
         if (parts.length != 2) {
             throw new IllegalArgumentException("[INVALID COMMAND] - Enter exactly two squares, such as E2 E3.");

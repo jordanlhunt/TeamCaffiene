@@ -12,7 +12,6 @@ public class MoveCommand {
     // ---------------
     // | Constructor |
     // ---------------
-
     /**
      * Creates a move command
      * 
@@ -27,7 +26,6 @@ public class MoveCommand {
     // -----------
     // | Getters |
     // -----------
-
     /**
      * Returns the source position.
      *

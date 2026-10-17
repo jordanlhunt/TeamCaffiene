@@ -45,11 +45,11 @@ public class Pawn extends GamePiece {
         List<Position> moves = new ArrayList<>();
         int direction = 1;
         if (getPieceColor() == PieceColor.WHITE) {
-            direction = 1;
+            direction = -1;
         }
         int startRow = 1;
         if (getPieceColor() == PieceColor.WHITE) {
-            startRow = 1;
+            startRow = 6;
         }
         // Regular movement
         Position oneStep = new Position(

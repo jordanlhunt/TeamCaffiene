@@ -6,28 +6,30 @@ import model.Player;
 import model.Position;
 import pieces.GamePiece;
 import pieces.PieceColor;
-
 import java.util.List;
 
 /**
  * Coordinates chess game rules, board updates, and turns.
  */
 public class Game {
-
     // --------------------
     // | Member Variables |
     // --------------------
-
     private final Board board;
     private final Player blackPlayer;
     private final Player whitePlayer;
     private Player currentPlayer;
     private boolean isGameOver;
-
     // ---------------
     // | Constructor |
     // ---------------
+    {
+        isGameOver = true;
+    }
 
+    // ------------------
+    // | Public Methods |
+    // ------------------
     /**
      * Creates a new game
      */
@@ -38,10 +40,6 @@ public class Game {
         currentPlayer = whitePlayer;
         isGameOver = false;
     }
-
-    // ------------------
-    // | Public Methods |
-    // ------------------
 
     /**
      * Start or reset the game
@@ -55,9 +53,8 @@ public class Game {
     /**
      * Ends the game
      */
-    public void endGame;
-    {
-        isGameOver = true;
+    public void endGame() {
+        this.isGameOver = true;
     }
 
     /**
@@ -75,7 +72,6 @@ public class Game {
         GamePiece movingPiece = board.getPiece(source);
         List<Position> possibleMoves = movingPiece.possibleMoves(board);
         GamePiece capturedGamePiece = board.moveGamePiece(source, destination);
-
         String movementMessage = currentPlayer.getPlayerName() + " moved " + movingPiece.getClass().getSimpleName()
                 + " from " + source.convertPositionToAlgebraic() + " to " + destination.convertPositionToAlgebraic();
         if (capturedGamePiece != null) {
@@ -89,7 +85,6 @@ public class Game {
     // ---------------------
     // | Getters & Setters |
     // ---------------------
-
     /**
      * Returns the board.
      *
@@ -138,7 +133,6 @@ public class Game {
     // -------------------
     // | Private Methods |
     // -------------------
-
     /**
      * A helper function to switch the current player after a successful move
      */
@@ -161,39 +155,31 @@ public class Game {
         if (isGameOver) {
             return MoveResult.failure("[INVALID MOVE] - The game has ended.");
         }
-
         if (source == null || destination == null) {
             return MoveResult.failure("[INVALID MOVE] - Source and destination are required.");
         }
-
         if (board.isOutOfBounds(source)) {
             return MoveResult.failure("[INVALID MOVE] - Source square is outside the board.");
         }
-
         if (board.isOutOfBounds(destination)) {
             return MoveResult.failure("[INVALID MOVE] - Destination square is outside the board.");
         }
-
         if (source.equals(destination)) {
             return MoveResult.failure("[INVALID MOVE] - Source and destination must be different.");
         }
-
         GamePiece piece = board.getPiece(source);
         if (piece == null) {
             return MoveResult
                     .failure("[INVALID MOVE] - There is no piece on " + source.convertPositionToAlgebraic() + ".");
         }
-
         if (piece.getPieceColor() != currentPlayer.getPieceColor()) {
             return MoveResult
                     .failure("[INVALID MOVE] - That piece does not belong to " + currentPlayer.getPlayerName() + ".");
         }
-
         GamePiece target = board.getPiece(destination);
         if (target != null && target.getPieceColor() == piece.getPieceColor()) {
             return MoveResult.failure("[INVALID MOVE] - The destination contains a friendly piece.");
         }
-
         List<Position> possibleMoves = piece.possibleMoves(board);
         if (!possibleMoves.contains(destination)) {
             return MoveResult.failure(
