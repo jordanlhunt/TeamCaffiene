@@ -2,10 +2,18 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 package console;
 
+import service.ConsoleUI;
+import service.Game;
+
 public class Main {
+    /**
+     * Application entry point.
+     *
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
-        System.out.println("White: ♔ ♕ ♖ ♗ ♘ ♙");
-        System.out.println();
-        System.out.println("Black: ♚ ♛ ♜ ♝ ♞ ♟");
+        Game game = new Game();
+        ConsoleUI consoleUI = new ConsoleUI(game);
+        consoleUI.runGame();
     }
 }
