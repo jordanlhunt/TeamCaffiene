@@ -14,7 +14,7 @@ public class Pawn extends GamePiece {
     // -------------
     // | Constants |
     // -------------
-    final int[] DIAGONAL_CAPTURE_OFFSETS = {-1, 1};
+    final int[] DIAGONAL_CAPTURE_OFFSETS = { -1, 1 };
 
     // --------------
     // | Constructor |
@@ -54,8 +54,7 @@ public class Pawn extends GamePiece {
         // Regular movement
         Position oneStep = new Position(
                 getPosition().getRow() + direction,
-                getPosition().getColumn()
-        );
+                getPosition().getColumn());
         // check if the space ahead is bounds and also free
         if (board.isInBoardBounds(oneStep) && board.getPiece(oneStep) == null) {
             moves.add(oneStep);
@@ -63,12 +62,9 @@ public class Pawn extends GamePiece {
             if (getPosition().getRow() == startRow) {
                 Position twoStep = new Position(
                         getPosition().getRow() + 2 * direction,
-                        getPosition().getColumn()
-                );
-                if (
-                        board.isInBoardBounds(twoStep) &&
-                                board.getPiece(twoStep) == null
-                ) {
+                        getPosition().getColumn());
+                if (board.isInBoardBounds(twoStep) &&
+                        board.getPiece(twoStep) == null) {
                     moves.add(twoStep);
                 }
             }
@@ -77,14 +73,11 @@ public class Pawn extends GamePiece {
         for (int offset : DIAGONAL_CAPTURE_OFFSETS) {
             Position possibleCapture = new Position(
                     getPosition().getRow() + direction,
-                    getPosition().getColumn() + offset
-            );
+                    getPosition().getColumn() + offset);
             if (board.isInBoardBounds(possibleCapture)) {
                 GamePiece targetGamePiece = board.getPiece(possibleCapture);
-                if (
-                        targetGamePiece != null &&
-                                targetGamePiece.getPieceColor() != this.getPieceColor()
-                ) {
+                if (targetGamePiece != null &&
+                        targetGamePiece.getPieceColor() != this.getPieceColor()) {
                     moves.add(possibleCapture);
                 }
             }

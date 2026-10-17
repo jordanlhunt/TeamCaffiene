@@ -12,14 +12,14 @@ public class Knight extends GamePiece {
     // | Constants |
     // -------------
     private static final int[][] KNIGHT_DIRECTIONS = {
-            {-2, -1},
-            {-2, 1},
-            {-1, -2},
-            {-1, 2},
-            {1, -2},
-            {1, 2},
-            {2, -1},
-            {2, 1},
+            { -2, -1 },
+            { -2, 1 },
+            { -1, -2 },
+            { -1, 2 },
+            { 1, -2 },
+            { 1, 2 },
+            { 2, -1 },
+            { 2, 1 },
     };
 
     // --------------
@@ -52,14 +52,11 @@ public class Knight extends GamePiece {
         for (int[] direction : KNIGHT_DIRECTIONS) {
             Position possibleMove = new Position(
                     getPosition().getRow() + direction[0],
-                    getPosition().getColumn() + direction[1]
-            );
+                    getPosition().getColumn() + direction[1]);
             if (board.isInBoardBounds(possibleMove)) {
                 GamePiece possibleCapture = board.getPiece(possibleMove);
-                if (
-                        possibleCapture == null ||
-                                possibleCapture.getPieceColor() != this.getPieceColor()
-                ) {
+                if (possibleCapture == null ||
+                        possibleCapture.getPieceColor() != this.getPieceColor()) {
                     moves.add(possibleMove);
                 }
             }

@@ -219,8 +219,7 @@ public class Board {
         if (isOutOfBounds(position)) {
             throw new IllegalArgumentException(
                     "Position is outside the board: " +
-                            position.convertPositionToAlgebraic()
-            );
+                            position.convertPositionToAlgebraic());
         }
         return gameGrid[position.getRow()][position.getColumn()];
     }
@@ -235,8 +234,7 @@ public class Board {
         if (isOutOfBounds(position)) {
             throw new IllegalArgumentException(
                     "Position is outside the board: " +
-                            position.convertPositionToAlgebraic()
-            );
+                            position.convertPositionToAlgebraic());
         } else {
             gameGrid[position.getRow()][position.getColumn()] = gamePiece;
             if (gamePiece != null) {

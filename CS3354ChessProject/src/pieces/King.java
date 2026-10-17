@@ -12,14 +12,14 @@ public class King extends GamePiece {
     // | Constants |
     // -------------
     private static final int[][] KING_DIRECTIONS = {
-            {-1, -1},
-            {-1, 0},
-            {-1, 1},
-            {0, -1},
-            {0, 1},
-            {1, -1},
-            {1, 0},
-            {1, 1},
+            { -1, -1 },
+            { -1, 0 },
+            { -1, 1 },
+            { 0, -1 },
+            { 0, 1 },
+            { 1, -1 },
+            { 1, 0 },
+            { 1, 1 },
     };
 
     // --------------
@@ -52,14 +52,11 @@ public class King extends GamePiece {
         for (int direction[] : KING_DIRECTIONS) {
             Position possibleMove = new Position(
                     getPosition().getRow() + direction[0],
-                    getPosition().getColumn() + direction[1]
-            );
+                    getPosition().getColumn() + direction[1]);
             if (board.isInBoardBounds(possibleMove)) {
                 GamePiece possibleCapture = board.getPiece(possibleMove);
-                if (
-                        possibleCapture == null ||
-                                possibleCapture.getPieceColor() != this.getPieceColor()
-                ) {
+                if (possibleCapture == null ||
+                        possibleCapture.getPieceColor() != this.getPieceColor()) {
                     possibleMoves.add(possibleMove);
                 }
             }

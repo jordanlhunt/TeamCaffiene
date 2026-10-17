@@ -101,16 +101,13 @@ public abstract class GamePiece {
             Board board,
             List<Position> possibleMoves,
             int rowOffset,
-            int columnOffset
-    ) {
+            int columnOffset) {
         int row = this.position.getRow() + rowOffset;
         int column = this.position.getColumn() + columnOffset;
-        while (
-                row >= 0 &&
-                        row < Position.MAX_ROWS &&
-                        column >= 0 &&
-                        column < Position.MAX_COLUMNS
-        ) {
+        while (row >= 0 &&
+                row < Position.MAX_ROWS &&
+                column >= 0 &&
+                column < Position.MAX_COLUMNS) {
             Position possibleMove = new Position(row, column);
             GamePiece target = board.getPiece(possibleMove);
             if (target == null) {

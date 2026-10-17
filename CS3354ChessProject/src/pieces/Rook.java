@@ -12,10 +12,10 @@ public class Rook extends GamePiece {
     // | Constants |
     // -------------
     private static final int[][] ROOK_DIRECTIONS = {
-            {-1, 0}, // Up
-            {1, 0}, // Down
-            {0, 1}, // Right
-            {0, -1}, // Left
+            { -1, 0 }, // Up
+            { 1, 0 }, // Down
+            { 0, 1 }, // Right
+            { 0, -1 }, // Left
     };
     // --------------
     // | Constructor |
@@ -54,6 +54,7 @@ public class Rook extends GamePiece {
     @Override
     /**
      * Returns the symbol for the rook.
+     * 
      * @return the rook symbol
      */
     public String getSymbol() {

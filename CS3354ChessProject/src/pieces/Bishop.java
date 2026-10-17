@@ -11,10 +11,10 @@ public class Bishop extends GamePiece {
     // | Constants |
     // -------------
     private static final int[][] BISHOP_DIRECTIONS = {
-            {-1, -1},
-            {-1, 1},
-            {1, -1},
-            {1, 1},
+            { -1, -1 },
+            { -1, 1 },
+            { 1, -1 },
+            { 1, 1 },
     };
 
     // --------------

@@ -12,14 +12,14 @@ public class Queen extends GamePiece {
     // | Constants |
     // -------------
     private static final int[][] QUEEN_DIRECTIONS = {
-            {-1, 0},
-            {1, 0},
-            {0, -1},
-            {0, 1},
-            {-1, -1},
-            {-1, 1},
-            {1, -1},
-            {1, 1},
+            { -1, 0 },
+            { 1, 0 },
+            { 0, -1 },
+            { 0, 1 },
+            { -1, -1 },
+            { -1, 1 },
+            { 1, -1 },
+            { 1, 1 },
     };
     // --------------
     // | Constructor |
