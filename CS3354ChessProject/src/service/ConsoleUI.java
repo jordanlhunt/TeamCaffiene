@@ -79,7 +79,7 @@ public class ConsoleUI {
 
     private void displayCurrentBoard(Board board) {
         System.out.println();
-        System.out.println("  A  B  C  D  E  F  G  H");
+        System.out.println("   A  B  C  D  E  F  G  H");
 
         for (int row = 0; row < 8; row++) {
             System.out.print((8 - row) + "  ");
@@ -91,10 +91,10 @@ public class ConsoleUI {
                     System.out.print(piece.getSymbol() + "  ");
                 }
             }
-            System.out.println(" " + (8 - row));
+            System.out.println((8 - row));
         }
 
-        System.out.println("  A  B  C  D  E  F  G  H");
+        System.out.println("   A  B  C  D  E  F  G  H");
         System.out.println();
     }
 
