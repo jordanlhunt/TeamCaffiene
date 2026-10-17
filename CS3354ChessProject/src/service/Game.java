@@ -39,10 +39,9 @@ public class Game {
         isGameOver = false;
     }
 
-
-    // ---------------
-    // | Constructor |
-    // ---------------
+    // ------------------
+    // | Public Methods |
+    // ------------------
 
     /**
      * Start or reset the game
@@ -53,10 +52,13 @@ public class Game {
         isGameOver = false;
     }
 
-
-    // ------------------
-    // | Public Methods |
-    // ------------------
+    /**
+     * Ends the game
+     */
+    public void endGame;
+    {
+        isGameOver = true;
+    }
 
     /**
      * Attempts to move a piece
@@ -74,19 +76,68 @@ public class Game {
         List<Position> possibleMoves = movingPiece.possibleMoves(board);
         GamePiece capturedGamePiece = board.moveGamePiece(source, destination);
 
-        String movementMessage = currentPlayer.getPlayerName() + " moved " + movingPiece.getClass().getSimpleName() + " from " + source.convertPositionToAlgebraic() + " to " + destination.convertPositionToAlgebraic();
+        String movementMessage = currentPlayer.getPlayerName() + " moved " + movingPiece.getClass().getSimpleName()
+                + " from " + source.convertPositionToAlgebraic() + " to " + destination.convertPositionToAlgebraic();
         if (capturedGamePiece != null) {
-            movementMessage += currentPlayer.getPlayerName() + " captured " + capturedGamePiece.getClass().getSimpleName() + ".";
+            movementMessage += currentPlayer.getPlayerName() + " captured "
+                    + capturedGamePiece.getClass().getSimpleName() + ".";
         }
         changeTurn();
         return MoveResult.success(movementMessage);
     }
 
+    // ---------------------
+    // | Getters & Setters |
+    // ---------------------
+
+    /**
+     * Returns the board.
+     *
+     * @return the board
+     */
+    public Board getBoard() {
+        return board;
+    }
+
+    /**
+     * Returns the current player.
+     *
+     * @return the current player
+     */
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    /**
+     * Returns the black player.
+     *
+     * @return the black player
+     */
+    public Player getBlackPlayer() {
+        return blackPlayer;
+    }
+
+    /**
+     * Returns the white player.
+     *
+     * @return the white player
+     */
+    public Player getWhitePlayer() {
+        return whitePlayer;
+    }
+
+    /**
+     * Checks whether the game has ended.
+     *
+     * @return true when the game has ended
+     */
+    public Boolean isGameOver() {
+        return this.isGameOver;
+    }
 
     // -------------------
     // | Private Methods |
     // -------------------
-
 
     /**
      * A helper function to switch the current player after a successful move
@@ -129,11 +180,13 @@ public class Game {
 
         GamePiece piece = board.getPiece(source);
         if (piece == null) {
-            return MoveResult.failure("[INVALID MOVE] - There is no piece on " + source.convertPositionToAlgebraic() + ".");
+            return MoveResult
+                    .failure("[INVALID MOVE] - There is no piece on " + source.convertPositionToAlgebraic() + ".");
         }
 
         if (piece.getPieceColor() != currentPlayer.getPieceColor()) {
-            return MoveResult.failure("[INVALID MOVE] - That piece does not belong to " + currentPlayer.getPlayerName() + ".");
+            return MoveResult
+                    .failure("[INVALID MOVE] - That piece does not belong to " + currentPlayer.getPlayerName() + ".");
         }
 
         GamePiece target = board.getPiece(destination);
@@ -146,8 +199,7 @@ public class Game {
             return MoveResult.failure(
                     "[INVALID MOVE] - The " + piece.getClass().getSimpleName()
                             + " cannot move from " + source.convertPositionToAlgebraic()
-                            + " to " + destination.convertPositionToAlgebraic() + "."
-            );
+                            + " to " + destination.convertPositionToAlgebraic() + ".");
         }
         return MoveResult.success("[VALID MOVE] - Move is valid");
     }
