@@ -48,13 +48,13 @@ public class Game {
      */
     public MoveResult tryMove(Position source, Position destination) {
         MoveResult isMoveResultValid = isTryMoveLegal(source, destination);
-
-        if (isMoveResultValid.getIsSuccessful()) {
+        if (!isMoveResultValid.getIsSuccessful()) {
+            return isMoveResultValid;
         }
-
-
-        return MoveResult.success("Move from " + source + " to " + destination + "was successful");
-
+        GamePiece movingPiece = board.getPiece(source);
+        GamePiece capturedGamePiece = board.moveGamePiece(source, destination);
+        String movementMessage = currentPlayer.getPlayerName() + " moved " + movingPiece.getClass().getSimpleName() + " from " + source.convertPositionToAlgebraic() + " to " + destination.convertPositionToAlgebraic();
+        return MoveResult.success(movementMessage);
     }
 
     /**
