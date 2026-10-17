@@ -4,7 +4,10 @@ import model.Board;
 import model.MoveResult;
 import model.Player;
 import model.Position;
+import pieces.GamePiece;
 import pieces.PieceColor;
+
+import java.util.List;
 
 /**
  * Coordinates chess game rules, board updates, and turns.
@@ -35,11 +38,75 @@ public class Game {
         currentPlayer = whitePlayer;
         isGameOver = false;
     }
+
     /**
      * Attempts to move a piece
-     * @param source the source position
+     *
+     * @param source      the source position
      * @param destination the destination position
      * @return the movement result
      */
-    public MoveResult tryMove(Position source, Position destination)
+    public MoveResult tryMove(Position source, Position destination) {
+        MoveResult isMoveResultValid = isTryMoveLegal(source, destination);
+
+        if (isMoveResultValid.getIsSuccessful()) {
+        }
+
+
+        return MoveResult.success("Move from " + source + " to " + destination + "was successful");
+
+    }
+
+    /**
+     * A helper function to check if move is legal.
+     *
+     * @param source      the source position
+     * @param destination the destination position
+     * @return null if move tryMove() is legal
+     */
+    private MoveResult isTryMoveLegal(Position source, Position destination) {
+        if (isGameOver) {
+            return MoveResult.failure("[INVALID MOVE] - The game has ended.");
+        }
+
+        if (source == null || destination == null) {
+            return MoveResult.failure("[INVALID MOVE] - Source and destination are required.");
+        }
+
+        if (board.isOutOfBounds(source)) {
+            return MoveResult.failure("[INVALID MOVE] - Source square is outside the board.");
+        }
+
+        if (board.isOutOfBounds(destination)) {
+            return MoveResult.failure("[INVALID MOVE] - Destination square is outside the board.");
+        }
+
+        if (source.equals(destination)) {
+            return MoveResult.failure("[INVALID MOVE] - Source and destination must be different.");
+        }
+
+        GamePiece piece = board.getPiece(source);
+        if (piece == null) {
+            return MoveResult.failure("[INVALID MOVE] - There is no piece on " + source.convertPositionToAlgebraic() + ".");
+        }
+
+        if (piece.getPieceColor() != currentPlayer.getPieceColor()) {
+            return MoveResult.failure("[INVALID MOVE] - That piece does not belong to " + currentPlayer.getPlayerName() + ".");
+        }
+
+        GamePiece target = board.getPiece(destination);
+        if (target != null && target.getPieceColor() == piece.getPieceColor()) {
+            return MoveResult.failure("[INVALID MOVE] - The destination contains a friendly piece.");
+        }
+
+        List<Position> possibleMoves = piece.possibleMoves(board);
+        if (!possibleMoves.contains(destination)) {
+            return MoveResult.failure(
+                    "[INVALID MOVE] - The " + piece.getClass().getSimpleName()
+                            + " cannot move from " + source.convertPositionToAlgebraic()
+                            + " to " + destination.convertPositionToAlgebraic() + "."
+            );
+        }
+        return MoveResult.success("[VALID MOVE] - Move is valid");
+    }
 }
