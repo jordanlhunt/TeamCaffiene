@@ -13,11 +13,20 @@ import java.util.List;
  * Coordinates chess game rules, board updates, and turns.
  */
 public class Game {
+
+    // --------------------
+    // | Member Variables |
+    // --------------------
+
     private final Board board;
     private final Player blackPlayer;
     private final Player whitePlayer;
     private Player currentPlayer;
     private boolean isGameOver;
+
+    // ---------------
+    // | Constructor |
+    // ---------------
 
     /**
      * Creates a new game
@@ -30,6 +39,11 @@ public class Game {
         isGameOver = false;
     }
 
+
+    // ---------------
+    // | Constructor |
+    // ---------------
+
     /**
      * Start or reset the game
      */
@@ -38,6 +52,11 @@ public class Game {
         currentPlayer = whitePlayer;
         isGameOver = false;
     }
+
+
+    // ------------------
+    // | Public Methods |
+    // ------------------
 
     /**
      * Attempts to move a piece
@@ -56,6 +75,10 @@ public class Game {
         String movementMessage = currentPlayer.getPlayerName() + " moved " + movingPiece.getClass().getSimpleName() + " from " + source.convertPositionToAlgebraic() + " to " + destination.convertPositionToAlgebraic();
         return MoveResult.success(movementMessage);
     }
+
+    // -------------------
+    // | Private Methods |
+    // -------------------
 
     /**
      * A helper function to check if move is legal.

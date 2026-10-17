@@ -29,14 +29,14 @@ public class Board {
     // ---------------------
     // | Instance Variables |
     // ---------------------
-    private final GamePiece gameBoard[][];
+    private final GamePiece gameGrid[][];
     private final List<GamePiece> capturedGamePieces;
 
     // ---------------
     // | Constructor |
     // ---------------
     public Board() {
-        this.gameBoard = new GamePiece[MAX_ROWS][MAX_COLUMNS];
+        this.gameGrid = new GamePiece[MAX_ROWS][MAX_COLUMNS];
         this.capturedGamePieces = new ArrayList<>();
         initialize();
     }
@@ -45,7 +45,7 @@ public class Board {
     // | Public Methods |
     // -----------------
     public void initialize() {
-        nullBoard();
+        clearBoard();
         capturedGamePieces.clear();
         placeGamePieces(PieceColor.BLACK);
         placeGamePieces(PieceColor.WHITE);
@@ -150,13 +150,34 @@ public class Board {
         int row = source.getRow() + rowOffset;
         int column = source.getColumn() + columnOffset;
         while (row != target.getRow() || column != target.getColumn()) {
-            if (gameBoard[row][column] != null) {
+            if (gameGrid[row][column] != null) {
                 return false;
             }
             row += rowOffset;
             column += columnOffset;
         }
         return true;
+    }
+
+    /**
+     * Moves a piece from one position to another.
+     * This method assumes the move has already been validated.
+     *
+     * @param source      the source position
+     * @param destination the destination position
+     * @return the captured piece, or null when no piece was captured
+     */
+    public GamePiece moveGamePiece(Position source, Position destination) {
+        GamePiece movingPiece = getPiece(source);
+        GamePiece capturedPiece = getPiece(destination);
+
+        if (capturedPiece != null) {
+            capturedGamePieces.add(capturedPiece);
+        }
+        setPieceAtPosition(source, null);
+        setPieceAtPosition(destination, movingPiece);
+
+        return capturedPiece;
     }
 
     // ------------------
@@ -166,10 +187,10 @@ public class Board {
     /**
      * Resets the board to null values at all positions
      */
-    private void nullBoard() {
+    private void clearBoard() {
         for (int row = 0; row < MAX_ROWS; row++) {
             for (int column = 0; column < MAX_COLUMNS; column++) {
-                this.gameBoard[row][column] = null;
+                this.gameGrid[row][column] = null;
             }
         }
     }
@@ -181,7 +202,7 @@ public class Board {
      */
     private void placeGamePiece(GamePiece gamePiece) {
         Position position = gamePiece.getPosition();
-        this.gameBoard[position.getRow()][position.getColumn()] = gamePiece;
+        this.gameGrid[position.getRow()][position.getColumn()] = gamePiece;
     }
 
     // ---------------------
@@ -201,7 +222,7 @@ public class Board {
                             position.convertPositionToAlgebraic()
             );
         }
-        return gameBoard[position.getRow()][position.getColumn()];
+        return gameGrid[position.getRow()][position.getColumn()];
     }
 
     /**
@@ -217,7 +238,7 @@ public class Board {
                             position.convertPositionToAlgebraic()
             );
         } else {
-            gameBoard[position.getRow()][position.getColumn()] = gamePiece;
+            gameGrid[position.getRow()][position.getColumn()] = gamePiece;
             if (gamePiece != null) {
                 gamePiece.setPosition(position);
             }
