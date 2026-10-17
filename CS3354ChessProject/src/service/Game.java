@@ -6,6 +6,7 @@ import model.Player;
 import model.Position;
 import pieces.GamePiece;
 import pieces.PieceColor;
+
 import java.util.List;
 
 /**
@@ -20,6 +21,7 @@ public class Game {
     private final Player whitePlayer;
     private Player currentPlayer;
     private boolean isGameOver;
+
     // ---------------
     // | Constructor |
     // ---------------
@@ -30,6 +32,7 @@ public class Game {
     // ------------------
     // | Public Methods |
     // ------------------
+
     /**
      * Creates a new game
      */
@@ -75,7 +78,7 @@ public class Game {
         String movementMessage = currentPlayer.getPlayerName() + " moved " + movingPiece.getClass().getSimpleName()
                 + " from " + source.convertPositionToAlgebraic() + " to " + destination.convertPositionToAlgebraic();
         if (capturedGamePiece != null) {
-            movementMessage += currentPlayer.getPlayerName() + " captured "
+            movementMessage += " " + currentPlayer.getPlayerName() + " captured "
                     + capturedGamePiece.getClass().getSimpleName() + ".";
         }
         changeTurn();
@@ -85,6 +88,7 @@ public class Game {
     // ---------------------
     // | Getters & Setters |
     // ---------------------
+
     /**
      * Returns the board.
      *
@@ -133,6 +137,7 @@ public class Game {
     // -------------------
     // | Private Methods |
     // -------------------
+
     /**
      * A helper function to switch the current player after a successful move
      */
