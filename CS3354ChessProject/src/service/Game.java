@@ -71,14 +71,33 @@ public class Game {
             return isMoveResultValid;
         }
         GamePiece movingPiece = board.getPiece(source);
+        List<Position> possibleMoves = movingPiece.possibleMoves(board);
         GamePiece capturedGamePiece = board.moveGamePiece(source, destination);
+
         String movementMessage = currentPlayer.getPlayerName() + " moved " + movingPiece.getClass().getSimpleName() + " from " + source.convertPositionToAlgebraic() + " to " + destination.convertPositionToAlgebraic();
+        if (capturedGamePiece != null) {
+            movementMessage += currentPlayer.getPlayerName() + " captured " + capturedGamePiece.getClass().getSimpleName() + ".";
+        }
+        changeTurn();
         return MoveResult.success(movementMessage);
     }
+
 
     // -------------------
     // | Private Methods |
     // -------------------
+
+
+    /**
+     * A helper function to switch the current player after a successful move
+     */
+    private void changeTurn() {
+        if (currentPlayer == blackPlayer) {
+            currentPlayer = whitePlayer;
+        } else {
+            currentPlayer = blackPlayer;
+        }
+    }
 
     /**
      * A helper function to check if move is legal.
