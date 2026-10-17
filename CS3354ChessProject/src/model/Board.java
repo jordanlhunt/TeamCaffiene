@@ -225,6 +225,15 @@ public class Board {
     }
 
     /**
+     * Returns the list of captured gamePieces
+     *
+     * @return a list of the captured gamePieces
+     */
+    public List<GamePiece> getCapturedGamePieces() {
+        return new ArrayList<>(this.capturedGamePieces);
+    }
+
+    /**
      * Places a piece at a given position
      *
      * @param position  on the gameboard (row,column)
